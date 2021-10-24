@@ -56,7 +56,7 @@ function makePageForEpisodes(episodeList) {
       function (event) {
         // highlight the mouseover target
         event.target.style.color = "orange";
-        event.target.style.fontSize = "16px";
+        event.target.style.fontSize = "15px";
 
         // reset the color after a short delay
         // setTimeout(function () {
@@ -99,7 +99,7 @@ function makePageForEpisodes(episodeList) {
 
     episodeDescription.style.width = "90%";
     episodeDescription.style.fontSize = "13px";
-    episodeDescription.style.padding = "10% 0 0 5%";
+    episodeDescription.style.padding = "0 0 0 5%";
     episodeDescription.style.height = "170px";
 
     episodeImg.style.width = "90%";
