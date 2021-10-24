@@ -17,15 +17,20 @@ function makePageForEpisodes(episodeList) {
   mainHeader.style.justifyContent = "center";
   mainHeader.style.width = "100%";
   mainHeader.style.height = "200px";
+  mainHeader.style.backgroundImage ="url(https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80)";
+  mainHeader.style.backgroundRepeat = "no-repeat";
+  mainHeader.style.backgroundSize = "cover";
+  mainHeader.style.backgroundPosition = "center";
 
   let mainHeaderLink = document.createElement("A");
   mainHeaderLink.textContent =
     "Game of Thrones Episodes, Extracted from TVMaze.com";
+    mainHeaderLink.style.textShadow = "2px 2px 8px #FF0000";
   mainHeaderLink.href = "https://www.tvmaze.com/";
   mainHeaderLink.target = "_blank";
   mainHeaderLink.style.textDecoration = "none";
   mainHeaderLink.style.color = "white";
-  mainHeader.style.margin = "170px 0 0 100px";
+  mainHeaderLink.style.margin = "100px 0 0 0";
   mainHeader.appendChild(mainHeaderLink);
 
   // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
@@ -40,6 +45,10 @@ function makePageForEpisodes(episodeList) {
       episode.number < 10 ? "0" + episode.number : episode.number
     }`;
     currEpisodeHeading.appendChild(episodeLink);
+
+    let episodeImg = document.createElement("img");
+    episodeImg.src = episode.image.medium;
+
     let episodeDescription = document.createElement("p");
     episodeDescription.innerHTML = episode.summary;
     episodeDescription.addEventListener(
@@ -47,28 +56,35 @@ function makePageForEpisodes(episodeList) {
       function (event) {
         // highlight the mouseover target
         event.target.style.color = "orange";
+        event.target.style.fontSize = "16px";
 
         // reset the color after a short delay
-        setTimeout(function () {
-          event.target.style.color = "";
-        }, 100);
+        // setTimeout(function () {
+        //   event.target.style.color = "";
+        //   event.target.style.fontSize = "13px";
+        // }, 10000);
       },
       false
     );
-    let episodeImg = document.createElement("img");
-    episodeImg.src = episode.image.medium;
+    episodeDescription.addEventListener("mouseout", function (event){
+        event.target.style.color = "";
+        event.target.style.fontSize = "13px";
+    });
 
     rootElem.appendChild(currEpisode);
     currEpisode.appendChild(currEpisodeHeading);
-    currEpisode.appendChild(episodeDescription);
     currEpisode.appendChild(episodeImg);
+    currEpisode.appendChild(episodeDescription);
 
     currEpisode.style.width = "20%";
     currEpisode.style.height = "500px";
-    currEpisode.style.border = "none";
+    // currEpisode.style.border = "none";
     currEpisode.style.margin = "50px 0 0 50px";
     currEpisode.style.backgroundColor = "rgba(0,120,80,0.9)";
     currEpisode.style.color = "white";
+    currEpisode.style.border = "solid";
+    currEpisode.style.borderColor = "white";
+    currEpisode.style.borderRadius = "2.5%";
 
     currEpisodeHeading.style.width = "90%";
     currEpisodeHeading.style.margin = "5px 0 0 5%";
@@ -86,9 +102,9 @@ function makePageForEpisodes(episodeList) {
     episodeDescription.style.padding = "10% 0 0 5%";
     episodeDescription.style.height = "170px";
 
-    episodeImg.style.width = "80%";
-    episodeImg.style.height = "140px";
-    episodeImg.style.margin = "5% 0 0 10%";
+    episodeImg.style.width = "90%";
+    episodeImg.style.height = "200px";
+    episodeImg.style.margin = "5% 0 0 5%";
   });
 }
 
