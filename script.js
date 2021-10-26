@@ -10,15 +10,12 @@ function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   //creating a header that will contain the title of the page that is linked to tv maze website
   let mainHeader = document.createElement("h1");
-  // rootElem.setAttribute("id", "rootElem");
   console.log(rootElem.id);
-  // mainHeader.setAttribute("id", "mainHeader");
   rootElem.appendChild(mainHeader);
 
-  let mainHeaderLink = document.createElement("A");
+  let mainHeaderLink = document.createElement("a");
   mainHeaderLink.textContent =
     "Game of Thrones Episodes, Extracted from TVMaze.com";
-  // mainHeaderLink.setAttribute("id", "mainHeaderLink");
   mainHeaderLink.href = "https://www.tvmaze.com/";
   mainHeaderLink.target = "_blank";
   mainHeader.appendChild(mainHeaderLink);
@@ -27,7 +24,6 @@ function makePageForEpisodes(episodeList) {
   episodeList.forEach((episode) => {
     let currEpisode = document.createElement("li");
     currEpisode.classList.add("episodes");
-    // console.log(currEpisode.className);
     let currEpisodeHeading = document.createElement("h2");
     currEpisodeHeading.classList.add("episodesHeadings");
     let episodeLink = document.createElement("A");
@@ -67,13 +63,11 @@ function makePageForEpisodes(episodeList) {
     currEpisode.appendChild(episodeDescription);
   });
 
-  
   /*
     🅢🅣🅨🅛🅘🅝🅖 😎
   */
 
   // Styling the rootElem
-
   rootElem.style.display = "flex";
   rootElem.style.flexFlow = "row wrap";
   rootElem.style.justifyContent = "center";
@@ -90,8 +84,7 @@ function makePageForEpisodes(episodeList) {
   mainHeader.style.backgroundSize = "cover";
   mainHeader.style.backgroundPosition = "center";
 
-  // // Styling the mainHeaderLink:
-
+  // Styling the mainHeaderLink:
   mainHeaderLink.style.textShadow = "2px 2px 8px #FF0000";
   mainHeaderLink.style.textDecoration = "none";
   mainHeaderLink.style.color = "white";
@@ -106,40 +99,86 @@ function makePageForEpisodes(episodeList) {
     "episodesDescriptions"
   );
 
-  for (let i = 0; i < episodes.length - 1; i++) {
-    // Styling the episodes:
-    episodes[i].style.width = "20%";
-    episodes[i].style.height = "500px";
-    episodes[i].style.margin = "50px 0 0 50px";
-    episodes[i].style.backgroundColor = "rgba(0,120,80,0.9)";
-    episodes[i].style.color = "white";
-    episodes[i].style.border = "solid";
-    episodes[i].style.borderColor = "white";
-    episodes[i].style.borderRadius = "2.5%";
+  function myFunction(x) {
+    if (x.matches) {
+      // If media query matches
+      document.body.style.backgroundColor = "yellow";
+      for (let i = 0; i < episodes.length - 1; i++) {
+        // Styling the episodes:
+        episodes[i].style.width = "70%";
+        episodes[i].style.height = "500px";
+        episodes[i].style.margin = "50px 0 0 10px";
+        episodes[i].style.backgroundColor = "rgba(0,120,80,0.9)";
+        episodes[i].style.color = "white";
+        episodes[i].style.border = "solid";
+        episodes[i].style.borderColor = "white";
+        episodes[i].style.borderRadius = "2.5%";
 
-    // Styling the episodesHeadings:
-    episodesHeadings[i].style.width = "90%";
-    episodesHeadings[i].style.margin = "5px 0 0 5%";
-    episodesHeadings[i].style.border = "solid";
-    episodesHeadings[i].style.borderRadius = "5%";
+        // Styling the episodesHeadings:
+        episodesHeadings[i].style.width = "90%";
+        episodesHeadings[i].style.margin = "5px 0 0 5%";
+        episodesHeadings[i].style.border = "solid";
+        episodesHeadings[i].style.borderRadius = "5%";
 
-    // Styling the episodesLinks:
-    episodesLinks[i].style.textDecoration = "none";
-    episodesLinks[i].style.padding = "0 0 0 5%";
-    episodesLinks[i].style.fontSize = "15px";
-    episodesLinks[i].style.color = "white";
+        // Styling the episodesLinks:
+        episodesLinks[i].style.textDecoration = "none";
+        episodesLinks[i].style.padding = "0 0 0 5%";
+        episodesLinks[i].style.fontSize = "15px";
+        episodesLinks[i].style.color = "white";
 
-    // Styling episodesImages:
-    episodesImages[i].style.width = "90%";
-    episodesImages[i].style.height = "200px";
-    episodesImages[i].style.margin = "5% 0 0 5%";
+        // Styling episodesImages:
+        episodesImages[i].style.width = "90%";
+        episodesImages[i].style.height = "200px";
+        episodesImages[i].style.margin = "5% 0 0 5%";
 
-    // Styling episodesDescriptions:
-    episodesDescriptions[i].style.width = "90%";
-    episodesDescriptions[i].style.fontSize = "13px";
-    episodesDescriptions[i].style.padding = "0 0 0 5%";
-    episodesDescriptions[i].style.height = "170px";
+        // Styling episodesDescriptions:
+        episodesDescriptions[i].style.width = "90%";
+        episodesDescriptions[i].style.fontSize = "13px";
+        episodesDescriptions[i].style.padding = "0 0 0 5%";
+        episodesDescriptions[i].style.height = "170px";
+      }
+    } else {
+      document.body.style.backgroundColor = "pink";
+      for (let i = 0; i < episodes.length - 1; i++) {
+        // Styling the episodes:
+        episodes[i].style.width = "22%";
+        episodes[i].style.height = "500px";
+        episodes[i].style.margin = "50px 0 0 50px";
+        episodes[i].style.backgroundColor = "rgba(0,120,80,0.9)";
+        episodes[i].style.color = "white";
+        episodes[i].style.border = "solid";
+        episodes[i].style.borderColor = "white";
+        episodes[i].style.borderRadius = "2.5%";
+
+        // Styling the episodesHeadings:
+        episodesHeadings[i].style.width = "90%";
+        episodesHeadings[i].style.margin = "5px 0 0 5%";
+        episodesHeadings[i].style.border = "solid";
+        episodesHeadings[i].style.borderRadius = "5%";
+
+        // Styling the episodesLinks:
+        episodesLinks[i].style.textDecoration = "none";
+        episodesLinks[i].style.padding = "0 0 0 5%";
+        episodesLinks[i].style.fontSize = "15px";
+        episodesLinks[i].style.color = "white";
+
+        // Styling episodesImages:
+        episodesImages[i].style.width = "90%";
+        episodesImages[i].style.height = "200px";
+        episodesImages[i].style.margin = "5% 0 0 5%";
+
+        // Styling episodesDescriptions:
+        episodesDescriptions[i].style.width = "90%";
+        episodesDescriptions[i].style.fontSize = "13px";
+        episodesDescriptions[i].style.padding = "0 0 0 5%";
+        episodesDescriptions[i].style.height = "170px";
+      }
+    }
   }
+
+  var x = window.matchMedia("(max-width: 700px)");
+  myFunction(x); // Call listener function at run time
+  x.addListener(myFunction); // Attach listener function on state changes
 }
 
 window.onload = setup;
