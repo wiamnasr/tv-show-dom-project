@@ -4,23 +4,23 @@ function setup() {
   makePageForEpisodes(allEpisodes);
 }
 
+//selecting the "root" div in the html
+const rootElem = document.getElementById("root");
+
+//creating a header that will contain the title of the page that is linked to tv maze website
+let mainHeader = document.createElement("h1");
+rootElem.appendChild(mainHeader);
+
+let mainHeaderLink = document.createElement("a");
+mainHeaderLink.textContent = "GOT Episodes, Extracted from TVMaze.com";
+mainHeaderLink.href = "https://www.tvmaze.com/";
+mainHeaderLink.target = "_blank";
+mainHeader.appendChild(mainHeaderLink);
+//edit this to display the total number of episodes:
+// rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+
 // this function renders the episodes on the page
 function makePageForEpisodes(episodeList) {
-  //selecting the "root" div in the html
-  const rootElem = document.getElementById("root");
-  //creating a header that will contain the title of the page that is linked to tv maze website
-  let mainHeader = document.createElement("h1");
-  console.log(rootElem.id);
-  rootElem.appendChild(mainHeader);
-
-  let mainHeaderLink = document.createElement("a");
-  mainHeaderLink.textContent =
-    "Game of Thrones Episodes, Extracted from TVMaze.com";
-  mainHeaderLink.href = "https://www.tvmaze.com/";
-  mainHeaderLink.target = "_blank";
-  mainHeader.appendChild(mainHeaderLink);
-
-  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
   episodeList.forEach((episode) => {
     let currEpisode = document.createElement("li");
     currEpisode.classList.add("episodes");
@@ -72,6 +72,7 @@ function makePageForEpisodes(episodeList) {
   rootElem.style.flexFlow = "row wrap";
   rootElem.style.justifyContent = "center";
   rootElem.style.backgroundColor = "rgba(100,54,76,0.9)";
+  rootElem.style.listStyleType = "none";
 
   // // Styling the mainHeader
   mainHeader.style.display = "flex";
@@ -103,7 +104,7 @@ function makePageForEpisodes(episodeList) {
     if (x.matches) {
       // If media query matches
       document.body.style.backgroundColor = "yellow";
-      for (let i = 0; i < episodes.length - 1; i++) {
+      for (let i = 0; i < episodes.length; i++) {
         // Styling the episodes:
         episodes[i].style.width = "70%";
         episodes[i].style.height = "500px";
@@ -139,7 +140,7 @@ function makePageForEpisodes(episodeList) {
       }
     } else {
       document.body.style.backgroundColor = "pink";
-      for (let i = 0; i < episodes.length - 1; i++) {
+      for (let i = 0; i < episodes.length; i++) {
         // Styling the episodes:
         episodes[i].style.width = "22%";
         episodes[i].style.height = "500px";
@@ -179,6 +180,41 @@ function makePageForEpisodes(episodeList) {
   var x = window.matchMedia("(max-width: 700px)");
   myFunction(x); // Call listener function at run time
   x.addListener(myFunction); // Attach listener function on state changes
+}
+
+function userSearchFunction() {
+  //declare variables
+  var input, filter, ul, li, a, description, i, txtValue;
+  input = document.getElementById("myInput");
+
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("root");
+  li = ul.getElementsByTagName("li");
+  let userSearchReturnedEpisodes = 0;
+  //loop through all list items, and hide those that do not match the search query
+  for (i = 0; i < li.length; i++) {
+    
+    a = li[i].getElementsByTagName("a")[0];
+    description = li[i].getElementsByTagName("p")[0];
+    txtValue = a.textContent || a.innerText;
+    descValue = description.textContent || description.innerText;
+    if (
+      txtValue.toUpperCase().indexOf(filter) > -1 ||
+      descValue.toUpperCase().indexOf(filter) > -1
+    ) {
+      li[i].style.display = "";
+      userSearchReturnedEpisodes +=1;
+    } else {
+      li[i].style.display = "none";
+    }
+    
+  }
+  if (userSearchReturnedEpisodes > 0) {
+    mainHeaderLink.textContent = `Your Search returned ${userSearchReturnedEpisodes} episodes`;
+  } else {
+    mainHeaderLink.textContent = "sorry, your search query returned no matches...";
+  }
+  
 }
 
 window.onload = setup;
