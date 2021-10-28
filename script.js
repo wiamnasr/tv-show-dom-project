@@ -193,7 +193,6 @@ function userSearchFunction() {
   let userSearchReturnedEpisodes = 0;
   //loop through all list items, and hide those that do not match the search query
   for (i = 0; i < li.length; i++) {
-    
     a = li[i].getElementsByTagName("a")[0];
     description = li[i].getElementsByTagName("p")[0];
     txtValue = a.textContent || a.innerText;
@@ -203,18 +202,20 @@ function userSearchFunction() {
       descValue.toUpperCase().indexOf(filter) > -1
     ) {
       li[i].style.display = "";
-      userSearchReturnedEpisodes +=1;
+      userSearchReturnedEpisodes += 1;
     } else {
       li[i].style.display = "none";
     }
-    
   }
   if (userSearchReturnedEpisodes > 0) {
     mainHeaderLink.textContent = `Your Search returned ${userSearchReturnedEpisodes} episodes`;
   } else {
-    mainHeaderLink.textContent = "sorry, your search query returned no matches...";
+    mainHeaderLink.textContent =
+      "sorry, your search query returned no matches...";
   }
-  
+  if (filter.length == 0) {
+    mainHeaderLink.textContent = "GOT Episodes, Extracted from TVMaze.com";
+  }
 }
 
 window.onload = setup;
