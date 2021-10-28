@@ -49,12 +49,16 @@ function makePageForEpisodes(episodeList) {
         // highlight the mouseover target
         event.target.style.color = "orange";
         event.target.style.fontSize = "15px";
+        currEpisode.style.height = "600px";
+        currEpisode.style.width = "25%";
       },
       false
     );
     episodeDescription.addEventListener("mouseout", function (event) {
       event.target.style.color = "";
       event.target.style.fontSize = "13px";
+      currEpisode.style.height = "500px";
+      currEpisode.style.width = "22%";
     });
 
     rootElem.appendChild(currEpisode);
@@ -73,6 +77,7 @@ function makePageForEpisodes(episodeList) {
   rootElem.style.justifyContent = "center";
   rootElem.style.backgroundColor = "rgba(100,54,76,0.9)";
   rootElem.style.listStyleType = "none";
+  rootElem.style.maxWidth = "100%";
 
   // // Styling the mainHeader
   mainHeader.style.display = "flex";
