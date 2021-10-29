@@ -21,6 +21,7 @@ mainHeader.appendChild(mainHeaderLink);
 
 // this function renders the episodes on the page
 function makePageForEpisodes(episodeList) {
+  let subjectSel = document.getElementById("subject");
   episodeList.forEach((episode) => {
     let currEpisode = document.createElement("li");
     currEpisode.classList.add("episodes");
@@ -34,6 +35,11 @@ function makePageForEpisodes(episodeList) {
     episodeLink.textContent = `${episode.name} - S0${episode.season}E${
       episode.number < 10 ? "0" + episode.number : episode.number
     }`;
+    subjectSel.options[subjectSel.options.length] = new Option(
+      `S0${episode.season}E${
+        episode.number < 10 ? "0" + episode.number : episode.number
+      } - ${episode.name}`
+    );
     currEpisodeHeading.appendChild(episodeLink);
 
     let episodeImg = document.createElement("img");
@@ -66,6 +72,21 @@ function makePageForEpisodes(episodeList) {
     currEpisode.appendChild(episodeImg);
     currEpisode.appendChild(episodeDescription);
   });
+  subjectSel.onchange = function () {
+    
+    let userSelected = subjectSel.value.substring(0, 6).toUpperCase();
+    console.log(userSelected);
+    let documentEpisodes = rootElem.getElementsByTagName("li");
+    let episodeNames = document.getElementsByClassName("episodesLinks");
+    console.log(`at zero: ${episodeNames[0].textContent.includes("S01E")}`);
+    for (let i = 0; i < episodeNames.length; i++) {
+      if (episodeNames[i].textContent.toUpperCase().includes(userSelected)) {
+        documentEpisodes[i].style.display = "";
+      } else {
+        documentEpisodes[i].style.display = "none";
+      }
+    }
+  };
 
   /*
     🅢🅣🅨🅛🅘🅝🅖 😎
@@ -189,10 +210,11 @@ function makePageForEpisodes(episodeList) {
 
 function userSearchFunction() {
   //declare variables
-  var input, filter, ul, li, a, description, i, txtValue;
+  var input, filter, ul, li, a, description, i, txtValue, selectedSubject;
   input = document.getElementById("myInput");
 
   filter = input.value.toUpperCase();
+
   ul = document.getElementById("root");
   li = ul.getElementsByTagName("li");
   let userSearchReturnedEpisodes = 0;
@@ -213,7 +235,9 @@ function userSearchFunction() {
     }
   }
   if (userSearchReturnedEpisodes > 0) {
-    mainHeaderLink.textContent = `Your Search returned ${userSearchReturnedEpisodes} episodes`;
+    mainHeaderLink.textContent = `Your Search returned ${userSearchReturnedEpisodes} ${
+      userSearchReturnedEpisodes === 1 ? "episode" : "episodes"
+    }`;
   } else {
     mainHeaderLink.textContent =
       "sorry, your search query returned no matches...";

@@ -9,12 +9,21 @@
   </head>
 
   <body>
+    <form name ="form1" id="form1" action="/script.js">
+      Episodes: <select name="subject" id="subject">
+        <option value="" selected="selected">Select Episode</option>
+
+      </select>
+
+    </form>
+
     <input
       type="text"
       id="myInput"
       onkeyup="userSearchFunction()"
       placeholder="search for episodes..."
     />
+
     
     <ul id="root"></ul>
 
