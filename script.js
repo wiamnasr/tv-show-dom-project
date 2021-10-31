@@ -48,7 +48,12 @@ function makePageForEpisodes(episodeList) {
 
     let episodeDescription = document.createElement("p");
     episodeDescription.classList.add("episodesDescriptions");
+
     episodeDescription.innerHTML = episode.summary;
+
+    /*
+        Starting here, those need to be in the styling bit and accounted for in the media query for page responsiveness
+    */
     episodeDescription.addEventListener(
       "mouseover",
       function (event) {
@@ -66,6 +71,9 @@ function makePageForEpisodes(episodeList) {
       currEpisode.style.height = "500px";
       currEpisode.style.width = "22%";
     });
+    /*
+        Until here
+    */
 
     rootElem.appendChild(currEpisode);
     currEpisode.appendChild(currEpisodeHeading);
@@ -73,7 +81,6 @@ function makePageForEpisodes(episodeList) {
     currEpisode.appendChild(episodeDescription);
   });
   subjectSel.onchange = function () {
-    
     let userSelected = subjectSel.value.substring(0, 6).toUpperCase();
     console.log(userSelected);
     let documentEpisodes = rootElem.getElementsByTagName("li");
@@ -106,7 +113,7 @@ function makePageForEpisodes(episodeList) {
   mainHeader.style.width = "100%";
   mainHeader.style.height = "200px";
   mainHeader.style.backgroundImage =
-    "url(https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80)";
+    "url(https://images.unsplash.com/photo-1515255384510-23e8b6a6ca3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80)";
   mainHeader.style.backgroundRepeat = "no-repeat";
   mainHeader.style.backgroundSize = "cover";
   mainHeader.style.backgroundPosition = "center";
@@ -115,7 +122,7 @@ function makePageForEpisodes(episodeList) {
   mainHeaderLink.style.textShadow = "2px 2px 8px #FF0000";
   mainHeaderLink.style.textDecoration = "none";
   mainHeaderLink.style.color = "white";
-  mainHeaderLink.style.margin = "100px 0 0 0";
+  mainHeaderLink.style.margin = "80px 0 0 0";
 
   //selecting classes for episodes, episodesHeadings, episodesLinks, episodesImages and episodesDescriptions
   let episodes = document.getElementsByClassName("episodes");
@@ -207,6 +214,8 @@ function makePageForEpisodes(episodeList) {
   myFunction(x); // Call listener function at run time
   x.addListener(myFunction); // Attach listener function on state changes
 }
+
+// Done with styling
 
 function userSearchFunction() {
   //declare variables
