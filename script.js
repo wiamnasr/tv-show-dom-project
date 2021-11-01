@@ -51,30 +51,6 @@ function makePageForEpisodes(episodeList) {
 
     episodeDescription.innerHTML = episode.summary;
 
-    /*
-        Starting here, those need to be in the styling bit and accounted for in the media query for page responsiveness
-    */
-    episodeDescription.addEventListener(
-      "mouseover",
-      function (event) {
-        // highlight the mouseover target
-        event.target.style.color = "orange";
-        event.target.style.fontSize = "15px";
-        currEpisode.style.height = "600px";
-        currEpisode.style.width = "25%";
-      },
-      false
-    );
-    episodeDescription.addEventListener("mouseout", function (event) {
-      event.target.style.color = "";
-      event.target.style.fontSize = "13px";
-      currEpisode.style.height = "500px";
-      currEpisode.style.width = "22%";
-    });
-    /*
-        Until here
-    */
-
     rootElem.appendChild(currEpisode);
     currEpisode.appendChild(currEpisodeHeading);
     currEpisode.appendChild(episodeImg);
@@ -170,6 +146,27 @@ function makePageForEpisodes(episodeList) {
         episodesDescriptions[i].style.fontSize = "13px";
         episodesDescriptions[i].style.padding = "0 0 0 5%";
         episodesDescriptions[i].style.height = "170px";
+        episodesDescriptions[i].style.overflowX = "scroll";
+
+        /*
+        Starting here, those need to be in the styling bit and accounted for in the media query for page responsiveness
+    */
+        episodesDescriptions[i].removeEventListener(
+          "mouseover",
+          function (event) {
+            // highlight the mouseover target
+            event.target.style.color = "orange";
+            event.target.style.fontSize = "23px";
+            // currEpisode.style.height = "600px";
+            episodes[i].style.width = "23%";
+            episodes[i].style.height = "510px";
+          },
+          true
+        );
+
+        /*
+        Until here
+    */
       }
     } else {
       document.body.style.backgroundColor = "pink";
@@ -206,6 +203,33 @@ function makePageForEpisodes(episodeList) {
         episodesDescriptions[i].style.fontSize = "13px";
         episodesDescriptions[i].style.padding = "0 0 0 5%";
         episodesDescriptions[i].style.height = "170px";
+        episodesDescriptions[i].style.overflowX = "auto";
+
+        /*
+        Starting here, those need to be in the styling bit and accounted for in the media query for page responsiveness
+    */
+        episodesDescriptions[i].addEventListener(
+          "mouseover",
+          function (event) {
+            // highlight the mouseover target
+            event.target.style.color = "orange";
+            event.target.style.fontSize = "23px";
+            // currEpisode.style.height = "600px";
+            episodes[i].style.width = "23%";
+            episodes[i].style.height = "510px";
+          },
+          false
+        );
+        episodesDescriptions[i].addEventListener("mouseout", function (event) {
+          event.target.style.color = "";
+          event.target.style.fontSize = "13px";
+          // currEpisode.style.height = "500px";
+          episodes[i].style.width = "22%";
+          episodes[i].style.height = "500px";
+        });
+        /*
+        Until here
+    */
       }
     }
   }
