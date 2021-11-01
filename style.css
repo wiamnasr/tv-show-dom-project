@@ -5,6 +5,7 @@
 .episodes:hover{
     transform: scale(1.1);
     opacity: 1.2;
+    font-size: 30px;
 }
 
 /* width */
@@ -32,6 +33,7 @@
 
 body, html {
   height: 100%;
+  
 }
 
 .parallax {
@@ -48,12 +50,15 @@ body, html {
   background-size: cover;
 }
 
+
+
 body {
   /* The image used */
   background-image: url("https://images.unsplash.com/photo-1511561415413-c643d4969838?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80");
 
-  /* Full height */
-  height: 100%;
+  /* width: 100%; */
+  /* display: flex;
+  flex-flow: row wrap; */
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
