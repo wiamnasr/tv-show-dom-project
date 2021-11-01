@@ -9,12 +9,11 @@
   </head>
 
   <body>
-    <form name ="form1" id="form1" action="/script.js">
-      Episodes: <select name="subject" id="subject">
+    <form name="form1" id="form1" action="/script.js">
+      Episodes:
+      <select name="subject" id="subject">
         <option value="" selected="selected">Select Episode</option>
-
       </select>
-
     </form>
 
     <input
@@ -24,8 +23,7 @@
       placeholder="search for episodes..."
     />
 
-    
-    <ul id="root"></ul>
+    <ul id="root" class="parallax"></ul>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
