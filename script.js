@@ -93,6 +93,7 @@ function makePageForEpisodes(episodeList) {
 
   mainHeader.style.justifyContent = "center";
   mainHeader.style.width = "100%";
+  mainHeader.style.border = "150px outset rgba(0,120,80,0.4)";
   mainHeader.style.height = "200px";
   mainHeader.style.backgroundImage =
     "url(https://images.unsplash.com/photo-1515255384510-23e8b6a6ca3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80)";
