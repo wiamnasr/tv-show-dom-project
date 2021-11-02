@@ -1,38 +1,11 @@
 //You can edit ALL of the code here
 function setup() {
-  /// not working as it should
-
-  function getGotEpisodesFromApi() {
-    fetchingEps().catch((error) => {
-      console.log(error.message);
-      console.log("request failed");
+  // fetching from the api:
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then((response) => response.json())
+    .then((data) => {
+      makePageForEpisodes(data);
     });
-
-    async function fetchingEps() {
-      const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
-      //   console.log(response.status);
-      //   console.log(typeof response);
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.status}`;
-        throw new Error(message);
-      }
-      const episodesObjectsList = await response.json();
-
-      // console.log(typeof episodesObjectsList);
-      return episodesObjectsList;
-    }
-
-    // fetchingEps();
-  }
-  // const allEp = getGotEpisodesFromApi();
-  // console.log(allEp);
-
-  ///
-
-  const allEpisodes = getAllEpisodes();
-
-  // console.log(`All Episodes: ${allEpisodes}`);
-  makePageForEpisodes(allEpisodes);
 }
 
 //selecting the "root" div in the html
