@@ -1,38 +1,9 @@
-.episodes {
-    opacity: 0.9;
-}
-
-.episodes:hover{
-    transform: scale(1.1);
-    opacity: 1.2;
-    font-size: 30px;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 20px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(50,45,23,0.4); 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(50,45,23,0.4); 
-}
 
 
-body, html {
+body,
+html {
   height: 100%;
+  width: 100%;
   
 }
 
@@ -50,19 +21,209 @@ body, html {
   background-size: cover;
 }
 
-
-
 body {
   /* The image used */
-  background-image: url("https://images.unsplash.com/photo-1511561415413-c643d4969838?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80");
+  background-image: url(https://images.unsplash.com/photo-1515255384510-23e8b6a6ca3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80);
 
-  /* width: 100%; */
-  /* display: flex;
-  flex-flow: row wrap; */
-
-  /* Create the parallax scrolling effect */
+  /* Creating the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#root {
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: rgba(100,54,76,0.9);
+  list-style-type: none;
+  width: 100%;
+  margin: 0 0 0 -30px;
+}
+
+
+/*Styling the mainHeader: */
+h1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: 10px outset rgba(0,120,80,0.4);
+  height: 200px;
+  background-image: url(https://images.unsplash.com/photo-1515255384510-23e8b6a6ca3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1632&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  margin: 0px -90px 0 -130px;
+
+}
+
+/* Styling the mainHeaderLink: */
+h1 a {
+  text-shadow: 2px 2px 8px #FF0000;
+  text-decoration: none;
+  color: white;
+  margin: 200px 0 0 0;
+  font-size: medium;
+}
+
+
+.episodes {
+  opacity: 1;
+  width: 70%;
+  height: 500px;
+  margin: 50px 0 0 10px;
+  background-color: rgba(0,120,80,0.9);
+  color: white;
+  border: solid;
+  border-color: white;
+  border-radius: 2.5%;
+
+
+}
+
+.episodesHeadings {
+  width: 90%;
+  margin: 5px 0 0 5%;
+  border: solid;
+  border-radius: 5%;
+}
+
+.episodesLinks {
+
+  text-decoration: none;
+  padding: 0 0 0 5%;
+  font-size: 15px;
+  color: white;
+}
+
+
+.episodesImages {
+  width: 90%;
+  height: 200px;
+  margin: 5% 0 0 5%;
+}
+
+.episodesDescriptions {
+  width: 90%;
+  font-size: 13px;
+  padding: 0 0 0 5%;
+  height: 170px;
+  overflow: scroll;
+}
+
+
+/* 
+  
+    //🅢🅣🅨🅛🅘🅝🅖 😎
+  
+
+
+
+
+  //selecting classes for episodes, episodesHeadings, episodesLinks, episodesImages and episodesDescriptions
+  let episodes = document.getElementsByClassName("episodes");
+  let episodesHeadings = document.getElementsByClassName("episodesHeadings");
+  let episodesLinks = document.getElementsByClassName("episodesLinks");
+  let episodesImages = document.getElementsByClassName("episodesImages");
+  let episodesDescriptions = document.getElementsByClassName(
+    "episodesDescriptions"
+  );
+
+  function myFunction(x) {
+    if (x.matches) {
+      // If media query matches
+      document.body.style.backgroundColor = "yellow";
+      for (let i = 0; i < episodes.length; i++) {
+
+
+
+        // Styling episodesDescriptions:
+        episodesDescriptions[i].style.width = "90%";
+        episodesDescriptions[i].style.fontSize = "13px";
+        episodesDescriptions[i].style.padding = "";
+        episodesDescriptions[i].style.height = "170px";
+        episodesDescriptions[i].style.overflowX = "scroll";
+      }
+    } else {
+      
+      }
+    }
+  }
+
+  var x = window.matchMedia("(max-width: 700px)");
+  myFunction(x); // Call listener function at run time
+  x.addListener(myFunction); // Attach listener function on state changes
+  
+*/
+
+
+/* Hover handling for episodes, creating an effect that zooms in on hover*/
+.episodes:hover {
+  transform: scale(1.1);
+  opacity: 1.8;
+  font-size: 40px;
+}
+
+
+/* changing the shape and color of the scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(50, 45, 23, 0.4);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(50, 45, 23, 0.4);
+}
+
+
+@media only screen and (min-width: 550px) {
+  body {
+    background-color: rgba(0,120,80,0.5);
+    
+  }
+
+  .episodes {
+    width: 35%;
+    margin: 50px 0 0 60px;
+    background-color: rgba(0,120,80,0.9);
+  }
+
+
+
+
+
+
+
+
+}
+
+/* document.body.style.backgroundColor = "rgba(0,120,80,0.5)";
+      for (let i = 0; i < episodes.length; i++) {
+
+
+        // Styling episodesImages:
+        episodesImages[i].style.width = "90%";
+        episodesImages[i].style.height = "200px";
+        episodesImages[i].style.margin = "5% 0 0 5%";
+
+        // Styling episodesDescriptions:
+        episodesDescriptions[i].style.width = "90%";
+        episodesDescriptions[i].style.fontSize = "13px";
+        episodesDescriptions[i].style.padding = "0 0 0 5%";
+        episodesDescriptions[i].style.height = "170px";
+        episodesDescriptions[i].style.overflowX = "auto"; */
