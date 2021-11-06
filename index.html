@@ -9,6 +9,14 @@
   </head>
 
   <body>
+
+    <form name="form0" id="form0" action="/script.js">
+      Shows:
+      <select name="shows" id="shows">
+        <option value="" selected="selected">Select Show</option>
+      </select>
+    </form>
+
     <form name="form1" id="form1" action="/script.js">
       Episodes:
       <select name="subject" id="subject">
@@ -27,7 +35,8 @@
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
-
+    <script src="shows.js"></script>
+    
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
   </body>

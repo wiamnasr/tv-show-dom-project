@@ -1,11 +1,19 @@
-//You can edit ALL of the code here
+// End
+
+let showSelect = document.getElementById("shows");
+
+// You can edit ALL of the code here
 function setup() {
-  // fetching from the api:
-  fetch("https://api.tvmaze.com/shows/82/episodes")
-    .then((response) => response.json())
-    .then((data) => {
-      makePageForEpisodes(data);
-    });
+  const showsArr = getAllShows();
+
+  showsArr.forEach((showObject) => {
+    let newOption = document.createElement("option");
+    newOption.value = showObject.id;
+    newOption.innerText = showObject.name;
+    showSelect.appendChild(newOption);
+  });
+
+  // .catch((error) => console.error("error occured: " + error));
 }
 
 //selecting the "root" div in the html
@@ -25,6 +33,7 @@ mainHeader.appendChild(mainHeaderLink);
 
 // this function renders the episodes on the page
 function makePageForEpisodes(episodeList) {
+  rootElem.innerHTML = "";
   let subjectSel = document.getElementById("subject");
   episodeList.forEach((episode) => {
     let currEpisode = document.createElement("li");
@@ -34,12 +43,12 @@ function makePageForEpisodes(episodeList) {
     let episodeLink = document.createElement("A");
     episodeLink.classList.add("episodesLinks");
     episodeLink.href = episode._links.self.href.replace("api.", "");
-    // console.log(episodeLink.href);
     episodeLink.target = "_blank";
 
     episodeLink.textContent = `${episode.name} - S0${episode.season}E${
       episode.number < 10 ? "0" + episode.number : episode.number
     }`;
+
     subjectSel.options[subjectSel.options.length] = new Option(
       `S0${episode.season}E${
         episode.number < 10 ? "0" + episode.number : episode.number
@@ -63,10 +72,8 @@ function makePageForEpisodes(episodeList) {
   });
   subjectSel.onchange = function () {
     let userSelected = subjectSel.value.substring(0, 6).toUpperCase();
-    // console.log(userSelected);
     let documentEpisodes = rootElem.getElementsByTagName("li");
     let episodeNames = document.getElementsByClassName("episodesLinks");
-    // console.log(`at zero: ${episodeNames[0].textContent.includes("S01E")}`);
     for (let i = 0; i < episodeNames.length; i++) {
       if (episodeNames[i].textContent.toUpperCase().includes(userSelected)) {
         documentEpisodes[i].style.display = "";
@@ -116,4 +123,16 @@ function userSearchFunction() {
   }
 }
 
+const selectedEp = async function () {
+  let userShowChoiceValue = document.getElementById("shows").value;
+  const response = await fetch(
+    `https://api.tvmaze.com/shows/${userShowChoiceValue}/episodes`
+  );
+
+  const jsonObject = await response.json();
+  makePageForEpisodes(jsonObject);
+};
+
 window.onload = setup;
+// remember to change var names to something less confusing
+showSelect.onchange = selectedEp;
