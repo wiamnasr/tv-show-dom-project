@@ -1,0 +1,42 @@
+1) install our packages, creating a package.json:
+
+npm init -y
+
+2) npm install - D for dev dependencies, we want eslint, prettier, the prettier plug-in and the prettier config as well as the node.js plugin
+the node js gives us some extra rules retained to node
+
+npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-node eslint-config-node
+
+=> these will get installed as dev dependencies
+
+3) Now to the airbnb style guide: grab this
+
+this will insatll eslint-plugin-import, eslint-plugin-react, eslint-plugin-react-hooks and eslint-plugin -jsx-a11y
+
+    > If you dont want the react, you can use eslint-config-airbnb-base
+
+    > this step will install all of the dependecies along with the airbnb as a dev dependency
+
+npx install-peerdeps --dev eslint-config-airbnb
+
+4) Create your config file: .prettierrc
+
+inside it, we want it to be a json object and the below is pasted inside:
+
+    {
+        "singleQuote": true
+    }
+
+> you can put any other prettier rules, to look these up, use the website: https://prettier.io/docs/en/options.html
+
+5) creating an eslint configuration
+
+you can create the file manually: .eslintrc.json
+
+>> Or you can install eslint globally and you can generate it:
+
+sudo npm install -g eslint
+
+>> Now you can generate a config file using:
+
+eslint --init

@@ -1,0 +1,53 @@
+TDD is a technique where you describe the behavior of your code, before you go and try to implement it
+
+Great source, that those notes are based on: https://www.youtube.com/watch?v=Jv2uxzhPFl4&t=356s
+
+testing will help:
+    > Reduce bugs
+    > improve maintainability of your code base on the long run
+    > knowing how to test your code is essential to level up as a developer (its fun and will teach you about your code a lot of things in unexpected ways)
+
+
+-----------------------------
+Functional testing
+-----------------------------
+
+At the lowest level we have Unit testing:
+    > goal is to validate the behaviour of individual functions, methods or just units of code
+
+Next is Integration testing:
+    > Involves testing multiple units of code together
+                (e.g you might have a react component and a hook to fetch
+                something from a database. you can then unit test each of
+                 these individually, but then have it integration test to
+                  see how well they work together, like is the component
+                   actually able to use the hook to get the data that it needs for the UI)
+
+
+Next there is End-to-end testing:
+    > Runs your app in a simulated environment and attempts to emulate actual user behavior
+    > There is a tool called cyprus that has a browser based test runner that allows you to
+    program tests where users click on bottons, fill out forms, then assert that the actual changes to the DOM or the UI are valid
+
+
+Those 3 are the most important and most commonly used testing, others are acceptance testing which is used to make sure client requirements are met by the software
+
+Another is system testing to make sure that everything works on actual servers or hardware
+
+Others like sanity or smoke test especially on large applications where you have thousands of tests to run
+     that may delay a lot of the work processes. A smoke test runs all the important tests first, to make
+     the sure the app isn't on fire before proceeding with the rest of the test suite
+
+
+____________________________________________
+
+--------------------------------------
+Non-Functional tests
+--------------------------------------
+
+
+There are also non functional tests for things like performance, usability and security
+
+"Stress testing", "failover testing" are common terms in non-functional tests. Used to test the capabilities of the infrastructure as opposed to the code itself
+
+
