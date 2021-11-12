@@ -7,9 +7,8 @@
 //
 
 const rootElem = document.getElementById("root");
-const showsDropdown = document.getElementById("shows");
+const showsDropdown = document.getElementById("showsDropdown");
 const episodesDropdown = document.getElementById("episodes");
-
 const mainHeader = document.createElement("h1");
 rootElem.appendChild(mainHeader);
 
@@ -27,15 +26,25 @@ mainHeader.appendChild(mainHeaderLink);
 // //
 //
 
-const selectedEp = async function () {
-  let userShowChoiceValue = document.getElementById("shows").value;
-  const response = await fetch(
-    `https://api.tvmaze.com/shows/${userShowChoiceValue}/episodes`
-  );
+const selectedShowEpisodes = async function () {
+  console.log(showsDropdown.value);
+  if (showsDropdown.value === "") {
+    rootElem.innerHTML = "";
+    rootElem.appendChild(mainHeader);
+    /*
+      requires fixing, on change to default
+    */
+    episodesDropdown.innerHTML = "Select Episode";
+  } else {
+    let userShowChoiceValue = document.getElementById("showsDropdown").value;
+    const response = await fetch(
+      `https://api.tvmaze.com/shows/${userShowChoiceValue}/episodes`
+    );
 
-  const jsonObject = await response.json();
+    const jsonObject = await response.json();
 
-  makePageForEpisodes(jsonObject);
+    makePageForEpisodes(jsonObject);
+  }
 };
 
 //
@@ -46,17 +55,25 @@ const selectedEp = async function () {
 // //
 //
 
+// This function is called on page load
 function setup() {
-  const showsArr = getAllShows();
+  //sorting in alphabetical order after getting the shows from shows.js
+  const showsArr = getAllShows().sort((a, b) =>
+    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+  );
+  rootElem.innerHtml = "";
+  rootElem.appendChild(mainHeader);
 
   showsArr.forEach((showObject) => {
     let newShowOption = document.createElement("option");
     newShowOption.value = showObject.id;
     newShowOption.innerText = showObject.name;
     showsDropdown.appendChild(newShowOption);
+    rootElem.appendChild(createShowCard(showObject));
   });
 }
 
+// This function creates an episode card
 function createEpisodeCard(episode) {
   let currEpisode = document.createElement("li");
   currEpisode.classList.add("episodes");
@@ -91,9 +108,13 @@ function createEpisodeCard(episode) {
 
 // this function renders the episodes on the page
 function makePageForEpisodes(episodeList) {
+  console.log(episodeList);
   rootElem.innerHTML = "";
   rootElem.appendChild(mainHeader);
-  episodesDropdown.innerHTML = "";
+  /*
+      requires fixing, on change to default
+  */
+  episodesDropdown.innerHTML = "Select Episode";
   episodeList.forEach((episode) => {
     rootElem.appendChild(createEpisodeCard(episode));
     episodesDropdown.options[episodesDropdown.options.length] = new Option(
@@ -104,6 +125,8 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
+// Function called from the index.html onkeyup for the user input field with id="myInput"
+// Offers live Search feature while as the user is typing text in the input field, episodes are filtered according to header (episode name and number) as well as episode description
 function userSearchFunction() {
   //declare variables
   var input, filter, ul, li, a, description, i, txtValue, selectedSubject;
@@ -120,6 +143,7 @@ function userSearchFunction() {
     description = li[i].getElementsByTagName("p")[0];
     txtValue = a.textContent || a.innerText;
     descValue = description.textContent || description.innerText;
+
     if (
       txtValue.toUpperCase().indexOf(filter) > -1 ||
       descValue.toUpperCase().indexOf(filter) > -1
@@ -132,7 +156,7 @@ function userSearchFunction() {
   }
   if (userSearchReturnedEpisodes > 0) {
     mainHeaderLink.textContent = `Your Search returned ${userSearchReturnedEpisodes} ${
-      userSearchReturnedEpisodes === 1 ? "episode" : "episodes"
+      userSearchReturnedEpisodes === 1 ? "result" : "results"
     }`;
   } else {
     mainHeaderLink.textContent =
@@ -143,6 +167,7 @@ function userSearchFunction() {
   }
 }
 
+// This function filters and shows only the user selected episode from the episodes dropdown
 function displayOnlySelectedEpisode() {
   let userSelectedEpisode = episodesDropdown.value
     .substring(0, 6)
@@ -162,6 +187,69 @@ function displayOnlySelectedEpisode() {
   }
 }
 
+//Creating a show card:
+function createShowCard(show) {
+  let currShow = document.createElement("li");
+  currShow.classList.add("shows");
+  let currShowHeading = document.createElement("h2");
+  currShowHeading.classList.add("showsHeadings");
+  let showLink = document.createElement("A");
+  showLink.classList.add("showsLinks");
+
+  showLink.target = "_blank";
+
+  showLink.textContent = show.name;
+
+  const renderShowEpisodes = async function () {
+    let showId = show.id;
+    const response = await fetch(
+      `https://api.tvmaze.com/shows/${showId}/episodes`
+    );
+
+    const jsonObject = await response.json();
+
+    makePageForEpisodes(jsonObject);
+  };
+
+  showLink.addEventListener("click", renderShowEpisodes);
+
+  let showImg = document.createElement("img");
+  showImg.classList.add("showsImages");
+  showImg.src = show.image.medium;
+
+  let showDescription = document.createElement("p");
+  showDescription.classList.add("showsDescriptions");
+
+  showDescription.innerHTML = show.summary;
+
+  let showDetailsDiv = document.createElement("div");
+  showDetailsDiv.classList.add("showDetails");
+
+  let showRating = document.createElement("p");
+  showRating.classList.add("showRatings");
+  showRating.innerHTML = show.rating.average;
+
+  let showGenres = document.createElement("p");
+  showGenres.classList.add("showGenres");
+  showGenres.innerHTML = show.genres;
+
+  let showStatus = document.createElement("p");
+  showStatus.classList.add("showStatus");
+  showStatus.innerHTML = show.status;
+
+  let showRuntime = document.createElement("p");
+  showRuntime.classList.add("showRuntime");
+  showRuntime.innerHTML = show.runtime;
+
+  showDetailsDiv.append(showRating, showGenres, showStatus, showRuntime);
+
+  currShowHeading.appendChild(showLink);
+
+  currShow.append(currShowHeading, showImg, showDescription, showDetailsDiv);
+
+  return currShow;
+}
+
 //
 // //
 // // //
@@ -171,6 +259,7 @@ function displayOnlySelectedEpisode() {
 //
 
 episodesDropdown.onchange = displayOnlySelectedEpisode;
-showsDropdown.onchange = selectedEp;
+showsDropdown.onchange = selectedShowEpisodes;
+document.getElementById("showsHome").addEventListener("click", setup);
 
 window.onload = setup;
