@@ -70,7 +70,7 @@ function setup() {
     newShowOption.innerText = showsArr[i].name;
     showsDropdown.appendChild(newShowOption);
     rootElem.appendChild(createShowCard(showsArr[i]));
-  };
+  }
 }
 
 // This function creates an episode card
@@ -163,7 +163,7 @@ function userSearchFunction() {
       "sorry, your search query returned no matches...";
   }
   if (filter.length == 0) {
-    mainHeaderLink.textContent = "GOT Episodes, Extracted from TVMaze.com";
+    mainHeaderLink.textContent = "Show Episodes Extracted from TVMaze.com";
   }
 }
 
