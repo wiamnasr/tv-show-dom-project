@@ -5,6 +5,11 @@
 // // //
 // //
 //
+//sorting in alphabetical order after getting the shows from shows.js
+const showsArr = getAllShows().sort((a, b) =>
+  a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+);
+console.log(showsArr.length);
 
 const rootElem = document.getElementById("root");
 const showsDropdown = document.getElementById("showsDropdown");
@@ -57,20 +62,17 @@ const selectedShowEpisodes = async function () {
 
 // This function is called on page load
 function setup() {
-  //sorting in alphabetical order after getting the shows from shows.js
-  const showsArr = getAllShows().sort((a, b) =>
-    a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-  );
   rootElem.innerHtml = "";
   rootElem.appendChild(mainHeader);
 
-  for (let i = 0; i < showsArr.length; i++) {
+  showsArr.forEach(show =>{
     let newShowOption = document.createElement("option");
-    newShowOption.value = showsArr[i].id;
-    newShowOption.innerText = showsArr[i].name;
+    newShowOption.value = show.id;
+    newShowOption.innerText = show.name;
     showsDropdown.appendChild(newShowOption);
-    rootElem.appendChild(createShowCard(showsArr[i]));
-  }
+    rootElem.appendChild(createShowCard(show));
+
+  });
 }
 
 // This function creates an episode card
