@@ -93,6 +93,7 @@ function createEpisodeCard(episode) {
   let episodeImg = document.createElement("img");
   episodeImg.classList.add("episodesImages");
   episodeImg.src = episode.image.medium;
+  episodeImg.alt = `Poster for episode ${episode.number} of season ${episode.season}, titled "${episode.name}"`;
 
   let episodeDescription = document.createElement("p");
   episodeDescription.classList.add("episodesDescriptions");
@@ -216,6 +217,7 @@ function createShowCard(show) {
   let showImg = document.createElement("img");
   showImg.classList.add("showsImages");
   showImg.src = show.image.medium;
+  showImg.alt = `Poster for the show "${show.name}"`;
 
   let showDescription = document.createElement("p");
   showDescription.classList.add("showsDescriptions");
