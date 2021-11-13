@@ -87,7 +87,7 @@ h1 a {
   margin: 5px 0 0 5%;
   border: solid;
   border-radius: 5%;
-  order:1;
+  order: 1;
 }
 
 .episodesLinks,
@@ -96,6 +96,7 @@ h1 a {
   padding: 0 0 0 5%;
   font-size: 15px;
   color: white;
+  cursor: pointer;
 }
 
 .episodesImages {
@@ -108,7 +109,7 @@ h1 a {
   width: 200px;
   height: 250px;
   margin: 1% 0 0 5%;
-  order:1;
+  order: 1;
 }
 
 .episodesDescriptions {
@@ -125,15 +126,14 @@ h1 a {
   padding: 0 0 0 5%;
   height: 150px;
   overflow: scroll;
-  order:4;
+  order: 4;
 }
 
 .showDetails {
   width: 200px;
   display: flex;
   flex-flow: column;
-  order:3;
-  
+  order: 3;
 }
 
 /* Hover handling for episodes, creating an effect that zooms in on hover*/
