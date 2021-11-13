@@ -63,7 +63,8 @@ h1 a {
   font-size: medium;
 }
 
-.episodes, .shows {
+.episodes,
+.shows {
   opacity: 1;
   width: 70%;
   height: 500px;
@@ -75,14 +76,22 @@ h1 a {
   border-radius: 2.5%;
 }
 
-.episodesHeadings, .showsHeadings {
+.shows {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.episodesHeadings,
+.showsHeadings {
   width: 90%;
   margin: 5px 0 0 5%;
   border: solid;
   border-radius: 5%;
+  order:1;
 }
 
-.episodesLinks, .showsLinks {
+.episodesLinks,
+.showsLinks {
   text-decoration: none;
   padding: 0 0 0 5%;
   font-size: 15px;
@@ -95,6 +104,13 @@ h1 a {
   margin: 5% 0 0 5%;
 }
 
+.showsImages {
+  width: 200px;
+  height: 250px;
+  margin: 1% 0 0 5%;
+  order:1;
+}
+
 .episodesDescriptions {
   width: 90%;
   font-size: 13px;
@@ -103,11 +119,29 @@ h1 a {
   overflow: scroll;
 }
 
+.showsDescriptions {
+  width: 40%;
+  font-size: 13px;
+  padding: 0 0 0 5%;
+  height: 150px;
+  overflow: scroll;
+  order:4;
+}
+
+.showDetails {
+  width: 200px;
+  display: flex;
+  flex-flow: column;
+  order:3;
+  
+}
+
 /* Hover handling for episodes, creating an effect that zooms in on hover*/
-.episodes:hover {
+.episodes:hover,
+.shows:hover {
   transform: scale(1.1);
   opacity: 1.8;
-  font-size: 40px;
+  font-size: 20px;
 }
 
 /* changing the shape and color of the scroll bar */
@@ -138,7 +172,8 @@ h1 a {
     background-color: rgba(0, 120, 80, 0.5);
   }
 
-  .episodes {
+  .episodes,
+  .shows {
     width: 35%;
     margin: 50px 0 0 60px;
     background-color: rgba(0, 120, 80, 0.9);

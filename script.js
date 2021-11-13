@@ -64,13 +64,13 @@ function setup() {
   rootElem.innerHtml = "";
   rootElem.appendChild(mainHeader);
 
-  showsArr.forEach((showObject) => {
+  for (let i = 0; i < showsArr.length; i++) {
     let newShowOption = document.createElement("option");
-    newShowOption.value = showObject.id;
-    newShowOption.innerText = showObject.name;
+    newShowOption.value = showsArr[i].id;
+    newShowOption.innerText = showsArr[i].name;
     showsDropdown.appendChild(newShowOption);
-    rootElem.appendChild(createShowCard(showObject));
-  });
+    rootElem.appendChild(createShowCard(showsArr[i]));
+  };
 }
 
 // This function creates an episode card
